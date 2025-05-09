@@ -1,13 +1,11 @@
-
 // https://westpalmbeach.macaronikid.com/events
 
+var axios = require('axios');
+var cheerio = require('cheerio');
+var fs = require('fs');
+var sheets = require('../GoogleSheets/sheets.js');
 
-import axios from 'axios';
-import * as cheerio from 'cheerio';
-//import cheerio from 'cheerio';
-import fs from 'fs';
-import { appendEventsToSheet } from '../GoogleSheets/sheets.js';
-const EvnetsToScape = 10;
+var EvnetsToScape = 10;
 
 const apiUrl = "https://api.macaronikid.com/api/v1/event/v2?query={%22status%22:%22active%22,%22townOwner%22:%2258252a7c6f1aaf645c94f1f5%22,%22startDate%22:%222025-05-07T01:00:00.000Z%22,%22endDate%22:%222025-05-14T00:59:59.000Z%22}&impression=true";
 
@@ -54,7 +52,7 @@ async function fetchEvents() {
 
     // Write to JSON file
     // fs.writeFileSync('events.json', JSON.stringify(eventData, null, 2));
-        await appendEventsToSheet(eventData);
+        await sheets.appendEventsToSheet(eventData);
     console.log('Event data saved to events.json');
   } catch (error) {
     console.error('Error fetching events:', error);

@@ -1,7 +1,7 @@
-const axios = require("axios");
-const cheerio = require("cheerio");
-const fs = require("fs");
-const { appendEventsToSheet } = require("../GoogleSheets/sheets.js");
+var axios = require("axios");
+var cheerio = require("cheerio");
+var fs = require("fs");
+var sheets = require("../GoogleSheets/sheets.js");
 
 const FetchEventDetails = async (url, title) => {
   try {
@@ -115,7 +115,7 @@ const main = async () => {
 
     const results = await Promise.all(fetchPromises);
     const filtered = results.filter(Boolean); // remove nulls from failed fetches
-    await appendEventsToSheet(filtered);
+    await sheets.appendEventsToSheet(filtered);
     // console.log("Scraped Events:");
     // console.log(filtered);
 

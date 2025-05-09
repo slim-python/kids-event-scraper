@@ -1,9 +1,9 @@
 // https://miamionthecheap.com/events/
 
-const axios = require("axios");
-const cheerio = require("cheerio");
-const fs = require("fs");
-const { appendEventsToSheet } = require("../GoogleSheets/sheets.js");
+var axios = require("axios");
+var cheerio = require("cheerio");
+var fs = require("fs");
+var sheets = require("../GoogleSheets/sheets.js");
 
 // --- Async function to fetch event details
 const FetchEventDetails = async (url) => {
@@ -74,7 +74,7 @@ const parsedEvents = async (events) => {
             };
         } catch (err) {
             console.error("Error parsing individual event block:", err.message);
-            return null; // Return null so it doesn’t crash the .map
+            return null; // Return null so it doesn't crash the .map
         }
     }));
 };
@@ -123,7 +123,7 @@ axios.get("https://miamionthecheap.com/events/", {
 
         // fs.writeFileSync("today-events.html", events.join("\n\n"));
         // fs.writeFileSync("today-events.json", JSON.stringify(parsed, null, 2));
-        await appendEventsToSheet(parsed);
+        await sheets.appendEventsToSheet(parsed);
         // console.log("Saved to today-events.html and today-events.json");
     })
     .catch(error => {
