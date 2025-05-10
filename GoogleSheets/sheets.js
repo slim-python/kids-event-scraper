@@ -1,11 +1,8 @@
+const { google } = require('googleapis');
+const path = require('path');
 
-import { google } from 'googleapis';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+// Get __filename and __dirname in CommonJS (ES5 style)
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 // Setup Google Auth
 const auth = new google.auth.GoogleAuth({
@@ -14,7 +11,7 @@ const auth = new google.auth.GoogleAuth({
 });
 
 
-export async function appendEventsToSheet(events) {
+ async function appendEventsToSheet(events) {
 
   const spreadsheetId = '1fRdvNURaMcu-WMMQZsOwoGSP0Ywi298XumrpRdZXzR4';
 //   const range = 'Sheet1'; // Sheet name only, for appending rows
@@ -57,4 +54,4 @@ export async function appendEventsToSheet(events) {
     return null;
   }
 }
-
+module.exports = { appendEventsToSheet };
