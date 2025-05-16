@@ -198,44 +198,6 @@ const main = async () => {
 
         fetchData();
 
-
-
-        // const fetchPromises = [];
-
-        // const today = new Date();
-        // const options = { month: "long", day: "numeric" };
-        // const todayFormatted = today.toLocaleDateString("en-US", options);
-
-        // let count = 0;
-
-        // $(".events-date-header").each((i, el) => {
-        //     const dateText = $(el).text().trim();
-
-        //     if (dateText.includes(todayFormatted)) {
-        //         const eventEls = $(el).nextUntil(".events-date-header");
-
-        //         eventEls.each((j, eventEl) => {
-        //             if (count >= 10) return false; // Exit the loop after 10 items
-
-        //             const eventLink = $(eventEl).find("a").attr("href");
-        //             const title = $(eventEl).find("h2").text().trim();
-        //             //   console.log("title", title);
-
-        //             if (eventLink) {
-        //                 fetchPromises.push(FetchEventDetails(`https://mommypoppins.com${eventLink}`, title));
-        //                 count++;
-        //             }
-        //         });
-        //     }
-        // });
-
-
-        // const results = await Promise.all(fetchPromises);
-        // const filtered = results.filter(Boolean); // remove nulls from failed fetches
-        // await appendEventsToSheet(filtered);
-        // console.log("Scraped Events:");
-        // console.log(filtered);
-
     } catch (error) {
         console.error("Error fetching events list:", error.message);
     }
