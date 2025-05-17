@@ -8,7 +8,6 @@ const environment = process.env.NODE_ENV;
 
 
 // Dynamically load all JS files in the "test" folder
-// const Folder = "test";
 const Folder = "scrappers"
 
 
@@ -26,8 +25,20 @@ let delay = environment === "DEVELOPMENT" ? 1 * 60 * 1000 : 10 * 60 * 1000; // 1
 const logFile = path.join(__dirname, 'scraper-log.txt');
 
 function log(message) {
-  const timestamp = new Date().toISOString();
-  const fullMessage = `[${timestamp}] ${message}\n`;
+
+  const date = new Date();
+
+const options = {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+};
+
+const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(date);
+  const fullMessage = `[${formattedDate}] ${message}\n`;
   fs.appendFileSync(logFile, fullMessage);
   console.log(fullMessage.trim());
 }

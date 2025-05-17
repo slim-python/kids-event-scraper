@@ -168,7 +168,7 @@ const main = async () => {
                 const Filteredevents = events2.filter(Boolean).slice(0, 10);
 
 
-                console.log("Filteredevents", Filteredevents);
+                // console.log("Filteredevents", Filteredevents);
                 await appendEventsToSheet(Filteredevents);
             } catch (error) {
                 console.error("Fetch error >>>>>>>> ", error);
