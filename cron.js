@@ -1,6 +1,11 @@
 const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+require('dotenv').config();
+
+
+const environment = process.env.NODE_ENV;
+
 
 // Dynamically load all JS files in the "test" folder
 // const Folder = "test";
@@ -13,8 +18,9 @@ const scrapers = fs.readdirSync(testFolder)
   .map(file => path.join(Folder, file));
 
 // Delay between scrapers (in milliseconds)
-const delay = 1 * 60 * 1000; // 1 minutes
-// const delay = 10 * 60 * 1000; // 10 minutes
+let delay = environment === "DEVELOPMENT" ? 1 * 60 * 1000 : 10 * 60 * 1000; // 1 minute for development, 10 minutes for production
+// const delay = 1 * 60 * 1000; // 1 minutes
+// const delay = 10 * 60 * 1000; // 10 minutess
 
 // Log file setup
 const logFile = path.join(__dirname, 'scraper-log.txt');

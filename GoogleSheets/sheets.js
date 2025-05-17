@@ -1,5 +1,10 @@
 const { google } = require('googleapis');
 const path = require('path');
+require('dotenv').config();
+
+
+const environment = process.env.NODE_ENV;
+
 
 // Get __filename and __dirname in CommonJS (ES5 style)
 
@@ -15,7 +20,7 @@ const auth = new google.auth.GoogleAuth({
 
   const spreadsheetId = '1fRdvNURaMcu-WMMQZsOwoGSP0Ywi298XumrpRdZXzR4';
 //   const range = 'Sheet1'; // Sheet name only, for appending rows
-  const range = 'test'; // Sheet name only, for appending rows
+  const range = environment == "DEVELOPMENT" ? 'test' : "Sheet1"; // Sheet name only, for appending rows
 
   try {
     if (!Array.isArray(events) || events.length === 0) {
